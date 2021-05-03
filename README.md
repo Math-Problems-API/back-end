@@ -109,10 +109,8 @@ For example, using the link above, the left operand would be compute first since
 
 Right now, the binary operand operator functions are defined like this
 ```js
-  operands => `${operands[0]} ${symbol} ${operands[1]}`
+  operands => algebrite.quote(`${operands[0]} ${symbol} ${operands[1]}`)
 ```
-
-Instead of just returning the string, we parse it with mathjs or algebrite. 
 
 The query is limited because it only accepts `left` and `right` operands, but we could do an array of operands. Then, we need to tell the Problem class how to combine the operands with an `operator` function, so more user input is required. Maybe the query could look like this
 
