@@ -70,6 +70,8 @@ Added `binary` query. Looks like this:
 
 ```
 
+This query returns 10 subtraction problems where the first number is a multiple of 5, the second number is one more than a multiple of 3, and the result is positive.  
+
 
 Thoughts:
   - Is it possible for GraphQL to "know" what operands are avaiable? Currently, the user has to input a "name" property for left/right. Possible to have some sort of auto-fill in GraphiQL like for the (static) schema things?
