@@ -1,3 +1,5 @@
-export default {
+import helloWorld from "./helloWorld";
 
+export default {
+  ...helloWorld
 }
