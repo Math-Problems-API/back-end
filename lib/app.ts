@@ -11,6 +11,10 @@ app.use(cors({
 }));
 app.use(json());
 
+app.use("/", (req, res, next) => {
+  console.log('Hi');
+});
+
 app.use(notFound);
 app.use(error);
 
