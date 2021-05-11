@@ -1,8 +1,5 @@
 import express, { json } from "express";
 import cors from "cors";
-import myPreset from "./models/preset";
-import gql from "./utils/gql";
-import presets from "./controllers/presets";
 
 import notFound from "./middleware/not-found";
 import error from "./middleware/error";
@@ -14,16 +11,7 @@ app.use(cors({
 }));
 app.use(json());
 
-app.use("/presets", presets);
-
-app.use("/gql", (req, res) => {
-  console.log(req.body);
-  gql(req, res)
-})
-
 app.use(notFound);
 app.use(error);
-
-console.log(myPreset);
 
 export default app;
