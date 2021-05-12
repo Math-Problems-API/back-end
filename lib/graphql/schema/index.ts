@@ -1,6 +1,11 @@
 import { buildSchema } from "graphql";
 
 export default buildSchema(`
+  type Operand {
+    id: String!
+    constraints: [String!]!
+  }
+
   type Problem {
     problem: String!
     solution: String!
@@ -13,7 +18,7 @@ export default buildSchema(`
   }
 
   input BinaryOperatorInput {
-    operands: [String!]!
+    operands: [Operand!]!
     operator: String!
     links: [Link!]
     number: Int
