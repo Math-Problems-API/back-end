@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getConstraintsChecker = exports.generator = void 0;
 const vm2_1 = require("vm2");
 const generator = (range) => {
     const lowerBound = range[0];
@@ -7,6 +8,7 @@ const generator = (range) => {
     const differnece = upperBound - lowerBound;
     return Math.floor(Math.random() * differnece + lowerBound);
 };
+exports.generator = generator;
 const getConstraintsChecker = (constraints) => {
     return (number) => {
         const vm = new vm2_1.VM({ sandbox: { number } });
@@ -18,5 +20,5 @@ const getConstraintsChecker = (constraints) => {
     `);
     };
 };
-console.log(generator([0, 100]));
+exports.getConstraintsChecker = getConstraintsChecker;
 //# sourceMappingURL=RandomInteger.js.map

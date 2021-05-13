@@ -152,3 +152,27 @@ Problems
 - Need to make sure `operator` function's return value does not get evaluated by Node, mathjs, algebrite, or whatever ends up parsing it. For example, the `operator` function `operands => operands[0] + operands[1]` returns `2 + 3` and not `6`. 
 - What language can be used across all types of operators? How can I tell the API to integrate `f(x) = x^2` from 0 to 1 in a string? Ideally, it'd be something like LaTeX. Is there something that can parse LaTeX expressions and evaluate them when needed?
 - Currently `range` is just a string. Change it to array of two `Int`s.
+
+
+# Notes
+
+5/13/21
+
+---
+Split development into two problem sets:
+- Generating problems
+- Generating solutions and solution verification
+
+I want to decouple getting and checking solutions from the problem generation since it's causing a lot of headache. 
+
+The interface between problems and solutions is something (prolly a function) that looks at the problems statement and computes an answer. 
+
+This is easy for four function problems since JavaScript knows how to evaluate "2 + 3" but what about "integrate x^2 from 0 to 1" or "factor 12" or "list divisors of 16"?
+
+I think wolfram may be good for this. 
+
+## Generating Problems
+
+- randomly generate operands
+- make a "problem statement", e.g. something like "add 2 to 3" or "2 + 3 = ?" or "2 + 3"
+
