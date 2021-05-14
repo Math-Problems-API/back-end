@@ -7,6 +7,8 @@ import {
   generateOperands 
 } from "../../api/Problem";
 
+import availableOperands from "../../api/operands/index";
+
 type ProblemQuery = {
   operands: RandomOperand[],
   operator: string,
@@ -25,7 +27,7 @@ export default {
     } = problemInput;
 
     const operator = getOperatorFunction(rawOperator);
-    const randomOperands = findOperands(rawOperands);
+    const randomOperands = findOperands(rawOperands, availableOperands);
 
     return [generateProblem(operator, generateOperands(randomOperands))];
   }

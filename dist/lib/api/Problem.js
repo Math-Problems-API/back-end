@@ -4,17 +4,6 @@ exports.generateProblem = exports.generateOperands = exports.findOperands = expo
 const generateOperand = (operand) => {
     return operand.generator(operand.properties);
 };
-// const lessThan100: myRange = {
-//   value: [0, 100]
-// };
-const intWithRange = (props) => {
-    const range = props[0];
-    const lowerBound = range.value[0];
-    const upperBound = range.value[1];
-    const difference = upperBound - lowerBound;
-    const value = Math.floor(Math.random() * difference + lowerBound);
-    return { value };
-};
 const getOperatorFunction = (operator) => {
     const [argList, result] = operator.split("=>");
     const args = argList.trim().split(", ");
@@ -28,18 +17,9 @@ const getOperatorFunction = (operator) => {
     };
 };
 exports.getOperatorFunction = getOperatorFunction;
-// const addProblemFromGQL = getOperatorFunction(operator);
-// // Now find the operands
-const range = { value: [0, 1000] };
-const RandomInt = {
-    name: "Random Int with Range",
-    generator: intWithRange,
-    properties: [range]
-};
-const availableOperands = [RandomInt];
-const findOperands = (operands) => operands.map(o => {
+const findOperands = (operands, available) => operands.map(o => {
     const { name, properties } = o;
-    const op = availableOperands.find(o => o.name === name);
+    const op = available.find(o => o.name === name);
     if (!op)
         throw new Error(`Couldn't find operand with name ${name}`);
     const copy = Object.assign({}, op);

@@ -1,31 +1,35 @@
 import { buildSchema } from "graphql";
 
 export default buildSchema(`
-  input Property {
+  input PropertyInput {
     value: [Int!]!
   }
 
-  input RandomOperand {
+  input RandomOperandInput {
     name: String!
-    properties: [Property!]
+    properties: [PropertyInput!]
   }
 
-  input Link {
+  input LinkInput {
     modifier: Int
     target: Int!
     constraints: [String!]!
   }
 
   input ProblemInput {
-    operands: [RandomOperand!]!
+    operands: [RandomOperandInput!]!
     operator: String!
-    links: [Link!]
+    links: [LinkInput!]
     number: Int
   }
 
   type Problem {
     problem: String!
     solution: String
+  }
+
+  type Property {
+    value: [Int!]!
   }
 
   type RandomOperand {

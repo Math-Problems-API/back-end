@@ -2,25 +2,25 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
 exports.default = graphql_1.buildSchema(`
-  input Property {
+  input PropertyInput {
     value: [Int!]!
   }
 
-  input RandomOperand {
+  input RandomOperandInput {
     name: String!
-    properties: [Property!]
+    properties: [PropertyInput!]
   }
 
-  input Link {
+  input LinkInput {
     modifier: Int
     target: Int!
     constraints: [String!]!
   }
 
   input ProblemInput {
-    operands: [RandomOperand!]!
+    operands: [RandomOperandInput!]!
     operator: String!
-    links: [Link!]
+    links: [LinkInput!]
     number: Int
   }
 
@@ -29,9 +29,19 @@ exports.default = graphql_1.buildSchema(`
     solution: String
   }
 
+  type Property {
+    value: [Int!]!
+  }
+
+  type RandomOperand {
+    name: String!
+    properties: [Property!]
+  }
+
   type RootQuery {
     helloWorld: String!
     problems(problemInput: ProblemInput): [Problem!]!
+    availableOperands: [RandomOperand!]!
   }
 
   schema {
