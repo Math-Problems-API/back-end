@@ -1,4 +1,4 @@
-import { Operand, RandomOperand } from "../Problem";
+import { Operand, RandomOperand } from "../types";
 
 type myRange = {
   value: [number, number]

@@ -4,7 +4,7 @@ import {
 } from "../../api/types";
 
 import { 
-  getOperatorFunction, 
+  generateOperatorFunction, 
   findOperands, 
   generateProblem, 
   generateOperands 
@@ -29,7 +29,7 @@ export default {
       operator: rawOperator 
     } = problemInput;
 
-    const operator = getOperatorFunction(rawOperator);
+    const operator = generateOperatorFunction(rawOperator);
     const randomOperands = findOperands(rawOperands, availableOperands);
 
     return [generateProblem(operator, generateOperands(randomOperands))];

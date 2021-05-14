@@ -13,7 +13,7 @@ const generateOperand = (operand: RandomOperand): Operand => {
 
 // Munge the operator field form a problems query into an
 // Operator type function
-export const getOperatorFunction = (operator: string): Operator => {
+export const generateOperatorFunction = (operator: string): Operator => {
   const [argList, result] = operator.split("=>");
 
   const args = argList.trim().split(", ");
