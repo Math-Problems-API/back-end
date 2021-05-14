@@ -1,6 +1,9 @@
 import { 
   RandomOperand,
-  Problem,
+  Problem
+} from "../../api/types";
+
+import { 
   getOperatorFunction, 
   findOperands, 
   generateProblem, 
