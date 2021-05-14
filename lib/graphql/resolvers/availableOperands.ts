@@ -1,5 +1,5 @@
-import { RandomOperand } from "../../api/types";
-import availableOperands from "../../api/operands/index";
+import { RandomOperand } from "../../problemsAPI/types";
+import availableOperands from "../../problemsAPI/operands/index";
 
 export default {
   availableOperands: (): RandomOperand[] => availableOperands
