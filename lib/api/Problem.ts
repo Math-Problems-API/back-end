@@ -1,28 +1,18 @@
-export type Operand = {
-  value: string | number
-}
+import {
+  Problem,
+  Operand,
+  RandomOperand,
+  Operator
+} from "./types";
 
-export type Problem = {
-  problem: string | number,
-  solution?: string | number
-}
-
-export type Property = {
-  value: number | number[] | string | string[]
-}
-
-export type RandomOperand = {
-  name?: string,
-  generator: (properties: Property[]) => Operand,
-  properties: Property[]
-}
-
+// Use a RandomOperand's generator and properties to
+// generate an Operand
 const generateOperand = (operand: RandomOperand): Operand => {
   return operand.generator(operand.properties);
 }
 
-type Operator = (props: Operand[]) => Problem;
-
+// Munge the operator field form a problems query into an
+// Operator type function
 export const getOperatorFunction = (operator: string): Operator => {
   const [argList, result] = operator.split("=>");
 
@@ -39,6 +29,10 @@ export const getOperatorFunction = (operator: string): Operator => {
   };
 };
 
+// Given some data matching the shape of RandomOperand[]
+// and a list of available RandomOperands, find the RandomOperands
+// in the available list, set the properties according to the
+// given data, then return the new list of RandomOperands
 export const findOperands = (operands: RandomOperand[], available: RandomOperand[]): RandomOperand[] => operands.map(o => {
   const { name, properties } = o;
   const op = available.find(o => o.name === name);
@@ -50,8 +44,10 @@ export const findOperands = (operands: RandomOperand[], available: RandomOperand
   return copy;
 });
 
+// Generate a list of Operands from a list of RandomOperands
 export const generateOperands = (ops: RandomOperand[]): Operand[] => ops.map(generateOperand);
 
+// Generate a Problem given an Operator and a list of Operands
 export const generateProblem = (operator: Operator, ops: Operand[]): Problem => {
   return operator(ops);
 }
