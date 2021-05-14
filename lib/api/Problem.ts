@@ -1,3 +1,40 @@
+// GraphQL
+
+// problem(probemInput: ProblemInput: {
+//   operands: ["RandomIntWithRange", "RandomIntWithRange"],
+//   operator: "left, right => left + right",
+//   number: 3
+// }) {
+//   problem
+//   solution
+// } 
+
+// In this situation, we need some code to convert the
+// operator string into a proper problem function like
+// additionProblem
+
+type Operator = (props: Operand[]) => Problem;
+
+const getOperatorFunction = (operator: string): Operator => {
+  const [argList, result] = operator.split("=>");
+
+  const args = argList.trim().split(", ");
+
+  return (ops: Operand[]): Problem => {
+    const problem = args.reduce((problem, arg) => {
+      const argIndex: number = args.indexOf(arg);
+      const operand = ops[argIndex];
+      return problem.replace(arg, `${operand.value}`);
+    }, result);
+
+    return { problem };
+  };
+};
+
+const addProblemFromGQL = getOperatorFunction("left, right => left + right");
+
+
+
 // Specific case
 type Operand = {
   value: string | number
@@ -25,8 +62,7 @@ type RandomOperand = {
 }
 
 const generateOperand = (operand: RandomOperand): Operand => {
-  const op = operand.generator(operand.properties);
-  return op;
+  return operand.generator(operand.properties);
 }
 
 
@@ -39,16 +75,8 @@ const generateOperand = (operand: RandomOperand): Operand => {
 const lessThan100: Property = {
   name: "range",
   value: [0, 100]
-}
+};
 
-// intWithRange has to know how to use lessThan100
-// Sure, we can parametrize the generation of one 
-// property like range. Convert everything to constraints?
-// No
-// Properties are supposed to deal with the generation of 
-// the number. Constraints attempt to check additional properties
-// only after the number has been generated. 
-// So, I think a good way to do this is to IN README
 const intWithRange = (props: Property[]): Operand => {
   const range = props.find(p => p.name === "range");
 
@@ -60,18 +88,27 @@ const intWithRange = (props: Property[]): Operand => {
   const value = Math.floor(Math.random() * difference + lowerBound);
 
   return { value };
-}
+};
 
 const RandomIntWithRange: RandomOperand = {
   generator: intWithRange,
   properties: [lessThan100]
-}
+};
 
-const myAdditionProblem = additionProblem([
+// Single instance
+const myAdditionProblem = addProblemFromGQL([
   generateOperand(RandomIntWithRange),
   generateOperand(RandomIntWithRange)
 ]);
 
+// Any number of addition problems
+const generateAddProblems = (number: number): Problem[] => {
+  return [...Array(number)].map(() => {
+    return additionProblem([
+      generateOperand(RandomIntWithRange),
+      generateOperand(RandomIntWithRange)
+    ]);
+  });
+};
+
 console.log(myAdditionProblem);
-
-
