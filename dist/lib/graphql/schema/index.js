@@ -31,7 +31,7 @@ exports.default = graphql_1.buildSchema(`
 
   type RootQuery {
     helloWorld: String!
-    problem(problemInput: ProblemInput): [Problem!]!
+    problems(problemInput: ProblemInput): [Problem!]!
   }
 
   schema {

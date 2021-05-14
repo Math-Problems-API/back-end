@@ -28,9 +28,15 @@ export default buildSchema(`
     solution: String
   }
 
+  type RandomOperand {
+    name: String!
+    properties: [Property!]
+  }
+
   type RootQuery {
     helloWorld: String!
     problems(problemInput: ProblemInput): [Problem!]!
+    availableOperands: [RandomOperand!]!
   }
 
   schema {
