@@ -8,9 +8,9 @@ type Problem = {
   solution?: string | number
 }
 
-const additionProblem = (ops: [Operand, Operand]): Problem => {
-  return { problem: `${ops[0].value} + ${ops[1].value}` };
-};
+// const additionProblem = (ops: [Operand, Operand]): Problem => {
+//   return { problem: `${ops[0].value} + ${ops[1].value}` };
+// };
 
 
 // Random Operand Generation
@@ -39,9 +39,9 @@ type myRange = {
   value: [number, number]
 }
 
-const lessThan100: myRange = {
-  value: [0, 100]
-};
+// const lessThan100: myRange = {
+//   value: [0, 100]
+// };
 
 const intWithRange = (props: [myRange]): Operand => {
   const range = props[0];
@@ -56,27 +56,27 @@ const intWithRange = (props: [myRange]): Operand => {
   return { value };
 };
 
-const RandomIntWithRange: RandomOperand = {
-  name: "Random Integer: Range",
-  generator: intWithRange,
-  properties: [lessThan100]
-};
+// const RandomIntWithRange: RandomOperand = {
+//   name: "Random Integer: Range",
+//   generator: intWithRange,
+//   properties: [lessThan100]
+// };
 
-// Single instance
-const myAdditionProblem = additionProblem([
-  generateOperand(RandomIntWithRange),
-  generateOperand(RandomIntWithRange)
-]);
+// // Single instance
+// const myAdditionProblem = additionProblem([
+//   generateOperand(RandomIntWithRange),
+//   generateOperand(RandomIntWithRange)
+// ]);
 
-// Any number of addition problems
-const generateAddProblems = (number: number): Problem[] => {
-  return [...Array(number)].map(() => {
-    return additionProblem([
-      generateOperand(RandomIntWithRange),
-      generateOperand(RandomIntWithRange)
-    ]);
-  });
-};
+// // Any number of addition problems
+// const generateAddProblems = (number: number): Problem[] => {
+//   return [...Array(number)].map(() => {
+//     return additionProblem([
+//       generateOperand(RandomIntWithRange),
+//       generateOperand(RandomIntWithRange)
+//     ]);
+//   });
+// };
 
 // console.log("Single Problem: ", myAdditionProblem);
 // console.log("Ten Problems: ", generateAddProblems(10));
@@ -108,22 +108,22 @@ const generateAddProblems = (number: number): Problem[] => {
 //   solution
 // } 
 
-const operator = "left, right => left + right";
+// const operator = "left, right => left + right";
 
-const operands = [
-  { 
-    name: "Random Int with Range",
-    properties: [
-      { name: "range", value: [0, 100] }
-    ]
-  },
-  { 
-    name: "Random Int with Range",
-    properties: [
-      { name: "range", value: [0, 100] }
-    ]
-  },
-];
+// const operands = [
+//   { 
+//     name: "Random Int with Range",
+//     properties: [
+//       { name: "range", value: [0, 100] }
+//     ]
+//   },
+//   { 
+//     name: "Random Int with Range",
+//     properties: [
+//       { name: "range", value: [0, 100] }
+//     ]
+//   },
+// ];
 
 // In this situation, we need some code to convert the
 // operator string into a proper problem function like
@@ -147,10 +147,10 @@ const getOperatorFunction = (operator: string): Operator => {
   };
 };
 
-const addProblemFromGQL = getOperatorFunction(operator);
+// const addProblemFromGQL = getOperatorFunction(operator);
 
 
-// Now find the operands
+// // Now find the operands
 const range: myRange = { value: [0, 1000] };
 
 const RandomInt: RandomOperand = {
@@ -161,18 +161,19 @@ const RandomInt: RandomOperand = {
 
 const availableOperands = [RandomInt];
 
-const foundOperands: RandomOperand[] = operands.map(o => {
+const findOperands = (operands: RandomOperand[]): RandomOperand[] => operands.map(o => {
   const { name, properties } = o;
   const op = availableOperands.find(o => o.name === name);
+
   if(!op) throw new Error(`Couldn't find operand with name ${name}`);
+
   const copy = { ...op };
   copy.properties = properties;
   return copy;
 });
 
-const generated: Operand[] = foundOperands.map(o => generateOperand(o));
+const generateOperands = (ops: RandomOperand[]): Operand[] => ops.map(generateOperand);
 
-const problems = addProblemFromGQL(generated);
-
-console.log(problems);
-
+const generateProblem = (operator: Operator, ops: Operand[]): Problem => {
+  return operator(ops);
+}
