@@ -18,7 +18,7 @@ type ProblemInput = {
 }
 
 export default {
-  problem: ({ problemInput }: ProblemInput): Problem[] => {
+  problems: ({ problemInput }: ProblemInput): Problem[] => {
     const { 
       operands: rawOperands, 
       operator: rawOperator 

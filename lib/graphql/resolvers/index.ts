@@ -1,7 +1,7 @@
 import helloWorld from "./helloWorld";
-import problem from "./problem";
+import problems from "./problems";
 
 export default {
   ...helloWorld,
-  ...problem
+  ...problems
 }
