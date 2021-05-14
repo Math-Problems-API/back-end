@@ -33,6 +33,9 @@ export const generateOperatorFunction = (operator: string): Operator => {
 // and a list of available RandomOperands, find the RandomOperands
 // in the available list, set the properties according to the
 // given data, then return the new list of RandomOperands
+
+// If no RandomOperand by that name is found, throw error
+// Do this so it makes it back to the user ¯\_(ツ)_/¯
 export const findOperands = (operands: RandomOperand[], available: RandomOperand[]): RandomOperand[] => operands.map(o => {
   const { name, properties } = o;
   const op = available.find(o => o.name === name);
