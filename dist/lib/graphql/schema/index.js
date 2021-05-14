@@ -2,32 +2,36 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
 exports.default = graphql_1.buildSchema(`
-  type Operand {
-    id: String!
-    constraints: [String!]!
+  input Property {
+    value: [Int!]!
   }
 
-  type Problem {
-    problem: String!
-    solution: String!
+  input RandomOperand {
+    name: String!
+    properties: [Property!]
   }
 
-  type Link {
+  input Link {
     modifier: Int
     target: Int!
     constraints: [String!]!
   }
 
-  input BinaryOperatorInput {
-    operands: [Operand!]!
+  input ProblemInput {
+    operands: [RandomOperand!]!
     operator: String!
     links: [Link!]
     number: Int
   }
 
+  type Problem {
+    problem: String!
+    solution: String
+  }
+
   type RootQuery {
     helloWorld: String!
-    binaryOperator(binaryOperatorInput: BinaryOperatorInput): [Problem!]!
+    problem(problemInput: ProblemInput): [Problem!]!
   }
 
   schema {

@@ -3,7 +3,7 @@ type Operand = {
   value: string | number
 }
 
-type Problem = {
+export type Problem = {
   problem: string | number,
   solution?: string | number
 }
@@ -18,7 +18,7 @@ type Property = {
   value: number | number[] | string | string[]
 }
 
-type RandomOperand = {
+export type RandomOperand = {
   name?: string,
   generator: (properties: Property[]) => Operand,
   properties: Property[]
@@ -131,7 +131,7 @@ const intWithRange = (props: [myRange]): Operand => {
 
 type Operator = (props: Operand[]) => Problem;
 
-const getOperatorFunction = (operator: string): Operator => {
+export const getOperatorFunction = (operator: string): Operator => {
   const [argList, result] = operator.split("=>");
 
   const args = argList.trim().split(", ");
@@ -161,7 +161,7 @@ const RandomInt: RandomOperand = {
 
 const availableOperands = [RandomInt];
 
-const findOperands = (operands: RandomOperand[]): RandomOperand[] => operands.map(o => {
+export const findOperands = (operands: RandomOperand[]): RandomOperand[] => operands.map(o => {
   const { name, properties } = o;
   const op = availableOperands.find(o => o.name === name);
 
@@ -172,8 +172,8 @@ const findOperands = (operands: RandomOperand[]): RandomOperand[] => operands.ma
   return copy;
 });
 
-const generateOperands = (ops: RandomOperand[]): Operand[] => ops.map(generateOperand);
+export const generateOperands = (ops: RandomOperand[]): Operand[] => ops.map(generateOperand);
 
-const generateProblem = (operator: Operator, ops: Operand[]): Problem => {
+export const generateProblem = (operator: Operator, ops: Operand[]): Problem => {
   return operator(ops);
 }

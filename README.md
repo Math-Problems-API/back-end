@@ -4,6 +4,13 @@ GraphQL API for constructing math problems.
 
 # What's working currently?
 
+5/14
+
+Migrated stuff to TypeScript in a functional style. There is some repeated `type` definitions, because I don't know how to write one type for GQL and TypeScript. 
+
+Currently only gets one problem. 
+
+
 5/2/21
 
 Presets implemented. Get all presets or create a new preset using the GraphQL endpoint. 
