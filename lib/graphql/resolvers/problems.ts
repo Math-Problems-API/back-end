@@ -1,16 +1,16 @@
 import { 
   RandomOperand,
   Problem
-} from "../../api/types";
+} from "../../problemsAPI/types";
 
 import { 
   generateOperatorFunction, 
   findOperands, 
   generateProblem, 
   generateOperands 
-} from "../../api/Problem";
+} from "../../problemsAPI/Problem";
 
-import availableOperands from "../../api/operands/index";
+import availableOperands from "../../problemsAPI/operands/index";
 
 type ProblemQuery = {
   operands: RandomOperand[],
