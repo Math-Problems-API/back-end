@@ -171,6 +171,20 @@ This is easy for four function problems since JavaScript knows how to evaluate "
 
 I think wolfram may be good for this. 
 
+
+
+5/14
+
+---
+What's the difference between `Property` and `Constraint`? 
+
+Here, I think it's useful to think of properties as being applied at generation,
+whereas constraints are checks applied after generation. Constraints check, fail,
+generate, check again. 
+
+It's easier to write constraints, but properties make things run faster. 
+
+
 ## Generating Problems
 
 - randomly generate operands

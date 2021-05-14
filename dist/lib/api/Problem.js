@@ -1,20 +1,30 @@
-// A problem is a function from a bunch of domains 
-// ("operands") to something...
-const RandomInteger = {
-    name: "Random Integer",
-    description: "A positive integer less than 100",
-    generator: props => {
-        const range = props.find(p => p.name === "range").value || [0, 100];
-        const lowerBound = range[0];
-        const upperBound = range[1];
-        const difference = upperBound - lowerBound;
-        const number = Math.floor(Math.random() * difference + lowerBound);
-        return { value: number };
-    }
+const additionProblem = (ops) => {
+    return { problem: `${ops[0].value} + ${ops[1].value}` };
+};
+const generateOperand = (operand) => {
+    const op = operand.generator(operand.properties);
+    return op;
 };
 const myRange = {
     name: "range",
-    value: [0, 1000],
+    value: [0, 100]
 };
-console.log(RandomInteger.generator([myRange]));
+const intWithRange = (props) => {
+    const range = props.find(p => p.name === "range");
+    const lowerBound = range.value[0];
+    const upperBound = range.value[1];
+    const difference = upperBound - lowerBound;
+    const value = Math.floor(Math.random() * difference + lowerBound);
+    return { value };
+};
+const RandomIntWithRange = {
+    generator: intWithRange,
+    properties: [myRange]
+};
+const myInteger = generateOperand(RandomIntWithRange);
+const myAdditionProblem = additionProblem([
+    generateOperand(RandomIntWithRange),
+    generateOperand(RandomIntWithRange)
+]);
+console.log(myAdditionProblem);
 //# sourceMappingURL=Problem.js.map
