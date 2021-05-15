@@ -11,6 +11,13 @@ const generateOperand = (operand: RandomOperand): Operand => {
   return operand.generator(operand.properties);
 }
 
+// Generate a list of Operands from a list of RandomOperands
+const generateOperands = (ops: RandomOperand[]): Operand[] => ops.map(generateOperand);
+
+export const generateProblems = (operator: Operator, ops: RandomOperand[], number: number): Problem[] => {
+  return [...Array(number)].map(() => operator(generateOperands(ops)))
+};
+
 // Munge the operator field form a problems query into an
 // Operator type function
 export const generateOperatorFunction = (operator: string): Operator => {
@@ -46,11 +53,3 @@ export const findOperands = (operands: RandomOperand[], available: RandomOperand
   copy.properties = properties;
   return copy;
 });
-
-// Generate a list of Operands from a list of RandomOperands
-export const generateOperands = (ops: RandomOperand[]): Operand[] => ops.map(generateOperand);
-
-// Generate a Problem given an Operator and a list of Operands
-export const generateProblem = (operator: Operator, ops: Operand[]): Problem => {
-  return operator(ops);
-}

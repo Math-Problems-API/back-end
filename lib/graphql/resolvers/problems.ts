@@ -5,9 +5,8 @@ import {
 
 import { 
   generateOperatorFunction, 
-  findOperands, 
-  generateProblem, 
-  generateOperands 
+  findOperands,
+  generateProblems
 } from "../../problemsAPI/Problem";
 
 import availableOperands from "../../problemsAPI/operands/index";
@@ -26,12 +25,13 @@ export default {
   problems: ({ problemInput }: ProblemInput): Problem[] => {
     const { 
       operands: rawOperands, 
-      operator: rawOperator 
+      operator: rawOperator,
+      number
     } = problemInput;
 
     const operator = generateOperatorFunction(rawOperator);
     const randomOperands = findOperands(rawOperands, availableOperands);
 
-    return [generateProblem(operator, generateOperands(randomOperands))];
+    return generateProblems(operator, randomOperands, number);
   }
 }

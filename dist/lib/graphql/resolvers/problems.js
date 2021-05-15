@@ -7,10 +7,10 @@ const Problem_1 = require("../../problemsAPI/Problem");
 const index_1 = __importDefault(require("../../problemsAPI/operands/index"));
 exports.default = {
     problems: ({ problemInput }) => {
-        const { operands: rawOperands, operator: rawOperator } = problemInput;
+        const { operands: rawOperands, operator: rawOperator, number } = problemInput;
         const operator = Problem_1.generateOperatorFunction(rawOperator);
         const randomOperands = Problem_1.findOperands(rawOperands, index_1.default);
-        return [Problem_1.generateProblem(operator, Problem_1.generateOperands(randomOperands))];
+        return Problem_1.generateProblems(operator, randomOperands, number);
     }
 };
 //# sourceMappingURL=problems.js.map
