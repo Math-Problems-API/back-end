@@ -1,11 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateProblem = exports.generateOperands = exports.findOperands = exports.generateOperatorFunction = void 0;
+exports.findOperands = exports.generateOperatorFunction = exports.generateProblems = void 0;
 // Use a RandomOperand's generator and properties to
 // generate an Operand
 const generateOperand = (operand) => {
     return operand.generator(operand.properties);
 };
+// Generate a list of Operands from a list of RandomOperands
+const generateOperands = (ops) => ops.map(generateOperand);
+const generateProblems = (operator, ops, number) => {
+    return [...Array(number)].map(() => operator(generateOperands(ops)));
+};
+exports.generateProblems = generateProblems;
 // Munge the operator field form a problems query into an
 // Operator type function
 const generateOperatorFunction = (operator) => {
@@ -37,12 +43,4 @@ const findOperands = (operands, available) => operands.map(o => {
     return copy;
 });
 exports.findOperands = findOperands;
-// Generate a list of Operands from a list of RandomOperands
-const generateOperands = (ops) => ops.map(generateOperand);
-exports.generateOperands = generateOperands;
-// Generate a Problem given an Operator and a list of Operands
-const generateProblem = (operator, ops) => {
-    return operator(ops);
-};
-exports.generateProblem = generateProblem;
 //# sourceMappingURL=Problem.js.map

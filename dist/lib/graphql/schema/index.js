@@ -39,7 +39,6 @@ exports.default = graphql_1.buildSchema(`
   }
 
   type RootQuery {
-    helloWorld: String!
     problems(problemInput: ProblemInput): [Problem!]!
     availableOperands: [RandomOperand!]!
   }
