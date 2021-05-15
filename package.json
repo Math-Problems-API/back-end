@@ -26,6 +26,7 @@
     "test:watch": "yarn test --watch",
     "build": "yarn tsc -p ./",
     "build:watch": "yarn run build -w",
-    "start": "tsc && nodemon dist/server.js"
+    "start:dev": "tsc && nodemon dist/server.js",
+    "start": "node dist/server.js"
   }
 }
