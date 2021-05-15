@@ -38,7 +38,6 @@ export default buildSchema(`
   }
 
   type RootQuery {
-    helloWorld: String!
     problems(problemInput: ProblemInput): [Problem!]!
     availableOperands: [RandomOperand!]!
   }
