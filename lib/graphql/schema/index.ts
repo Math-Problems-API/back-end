@@ -35,6 +35,7 @@ export default buildSchema(`
   type RandomOperand {
     name: String!
     properties: [Property!]
+    constraints: [String!]!
   }
 
   type RootQuery {
