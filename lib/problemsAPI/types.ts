@@ -17,13 +17,19 @@ export type Property = {
   value: number | number[] | string | string[]
 }
 
+
+export type Constraint = (value: Operand) => boolean;
+
+
 // Generates an Operand according to its given
 // properties and the definition of the generator
 export type RandomOperand = {
   name?: string,
   generator: (properties: Property[]) => Operand,
+  constrainer?: (constraints: Constraint[]) => boolean,
   properties?: Property[]
 }
+
 
 // Generic Operator shape
 // e.g. addition is ([left, right]) => `${left} + ${right}`

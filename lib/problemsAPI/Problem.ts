@@ -9,7 +9,7 @@ import {
 // generate an Operand
 const generateOperand = (operand: RandomOperand): Operand => {
   return operand.generator(operand.properties);
-}
+};
 
 
 // Generate a list of Operands from a list of RandomOperands
@@ -17,26 +17,6 @@ export const generateOperands = (ops: RandomOperand[]): Operand[] => ops.map(gen
 
 export const generateProblems = (operator: Operator, ops: Operand[], number: number): Problem[] => {
   return [...Array(number)].map(() => operator(ops));
-};
-
-
-// Munge the operator field from a problems query into an
-// Operator type function
-
-export const generateOperator = (operator: string): Operator => {
-  const [argList, result] = operator.split("=>");
-
-  const args = argList.trim().split(", ");
-
-  return (ops: Operand[]): Problem => {
-    const problem = args.reduce((problem, arg) => {
-      const argIndex = args.indexOf(arg);
-      const operand = ops[argIndex];
-      return problem.replace(arg, `${operand.value}`);
-    }, result.trim());
-
-    return { problem };
-  };
 };
 
 

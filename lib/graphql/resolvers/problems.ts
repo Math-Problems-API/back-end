@@ -4,13 +4,14 @@ import {
 } from "../../problemsAPI/types";
 
 import { 
-  generateOperator, 
   findOperands,
   generateOperands,
   generateProblems
 } from "../../problemsAPI/Problem";
 
 import availableOperands from "../../problemsAPI/operands/index";
+
+import generateOperator from "../../utils/generateOperator";
 
 type ProblemQuery = {
   operands: RandomOperand[],
