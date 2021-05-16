@@ -11,7 +11,9 @@ const generateConstraint = (constraint: string): Constraint => {
   }
 
   return (operand: Operand): boolean => {
-    const result = rawResult.replace(trimmedArg, `${operand.value}`);
+    const argRegex = new RegExp(trimmedArg, "g");
+
+    const result = rawResult.replace(argRegex, `${operand.value}`);
     
     const vm = new VM({ sandbox: { operand: operand.value } });
 
