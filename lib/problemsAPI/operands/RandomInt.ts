@@ -18,7 +18,7 @@ const intWithRange = (props: myRange[]): Operand => {
 };
 
 const RandomInt: RandomOperand = {
-  name: "Random Int with Range",
+  name: "Random Integer with Range",
   generator: intWithRange
 }
 
