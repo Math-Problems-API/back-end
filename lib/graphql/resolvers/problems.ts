@@ -1,6 +1,7 @@
 import { 
   RandomOperand,
-  Problem
+  Problem,
+  UnParsedRandomOperand
 } from "../../problemsAPI/types";
 
 import { 
@@ -14,7 +15,7 @@ import availableOperands from "../../problemsAPI/operands/index";
 import generateOperator from "../../utils/generateOperator";
 
 type ProblemQuery = {
-  operands: RandomOperand[],
+  operands: UnParsedRandomOperand[],
   operator: string,
   number: number
 }

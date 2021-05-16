@@ -30,6 +30,12 @@ export type RandomOperand = {
   properties?: Property[]
 }
 
+export type UnParsedRandomOperand = {
+  name?: string,
+  constraints?: string[],
+  properties?: Property[]
+}
+
 
 // Generic Operator shape
 // e.g. addition is ([left, right]) => `${left} + ${right}`
