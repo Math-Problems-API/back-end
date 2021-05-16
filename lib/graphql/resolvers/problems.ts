@@ -1,19 +1,22 @@
 import { 
   RandomOperand,
-  Problem
+  Problem,
+  UnParsedRandomOperand
 } from "../../problemsAPI/types";
 
 import { 
-  generateOperator, 
   findOperands,
   generateOperands,
-  generateProblems
+  generateProblems,
+  makeGeneratorWithConstraints
 } from "../../problemsAPI/Problem";
 
 import availableOperands from "../../problemsAPI/operands/index";
 
+import generateOperator from "../../utils/generateOperator";
+
 type ProblemQuery = {
-  operands: RandomOperand[],
+  operands: UnParsedRandomOperand[],
   operator: string,
   number: number
 }
@@ -32,7 +35,8 @@ export default {
 
     const operator = generateOperator(rawOperator);
     const randomOperands = findOperands(rawOperands, availableOperands);
-    const operands = generateOperands(randomOperands);
+
+    const operands = generateOperands(randomOperands, makeGeneratorWithConstraints(10000));
 
     return generateProblems(operator, operands, number);
   }
