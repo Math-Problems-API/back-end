@@ -45,8 +45,12 @@ export const makeGeneratorWithConstraints = (maxIterations = 10000): Generator =
 // Generate a list of Operands from a list of RandomOperands
 export const generateOperands = (ops: RandomOperand[], generator: Generator): Operand[] => ops.map(generator);
 
-export const generateProblems = (operator: Operator, ops: Operand[], number: number): Problem[] => {
-  return [...Array(number)].map(() => operator(ops));
+export const generateProblems = (operator: Operator, ops: RandomOperand[], number: number): Problem[] => {
+  return [...Array(number)].map(() => {
+    const generateOpsWithConstraints = makeGeneratorWithConstraints(10000);
+    const operands = generateOperands(ops, generateOpsWithConstraints);
+    return operator(operands);
+  });
 };
 
 
