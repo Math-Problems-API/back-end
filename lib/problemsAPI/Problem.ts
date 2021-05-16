@@ -2,7 +2,8 @@ import {
   Problem,
   Operand,
   RandomOperand,
-  Operator
+  Operator,
+  Constraint
 } from "./types";
 
 // Use a RandomOperand's generator and properties to
@@ -37,3 +38,10 @@ export const findOperands = (operands: RandomOperand[], available: RandomOperand
   copy.properties = properties;
   return copy;
 });
+
+export const constrainer = (constraints: Constraint[], operand: Operand): boolean => {
+  return constraints.reduce((pass, constraint) => {
+    if(constraint(operand)) return false;
+    return pass;
+  }, true);
+}

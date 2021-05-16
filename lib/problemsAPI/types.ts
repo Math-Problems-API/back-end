@@ -26,7 +26,7 @@ export type Constraint = (value: Operand) => boolean;
 export type RandomOperand = {
   name?: string,
   generator: (properties: Property[]) => Operand,
-  constrainer?: (constraints: Constraint[]) => boolean,
+  constraints?: Constraint[],
   properties?: Property[]
 }
 
