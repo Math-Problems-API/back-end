@@ -31,7 +31,7 @@ export type RandomOperand = {
 }
 
 export type UnParsedRandomOperand = {
-  name?: string,
+  name: string,
   constraints?: string[],
   properties?: Property[]
 }
