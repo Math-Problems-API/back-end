@@ -5,9 +5,7 @@ import {
 
 import { 
   findOperands,
-  generateOperands,
-  generateProblems,
-  makeGeneratorWithConstraints
+  generateProblems
 } from "../../problemsAPI/Problem";
 
 import availableOperands from "../../problemsAPI/operands/index";
