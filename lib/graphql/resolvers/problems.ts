@@ -4,8 +4,9 @@ import {
 } from "../../problemsAPI/types";
 
 import { 
-  generateOperatorFunction, 
+  generateOperator, 
   findOperands,
+  generateOperands,
   generateProblems
 } from "../../problemsAPI/Problem";
 
@@ -29,9 +30,10 @@ export default {
       number
     } = problemInput;
 
-    const operator = generateOperatorFunction(rawOperator);
+    const operator = generateOperator(rawOperator);
     const randomOperands = findOperands(rawOperands, availableOperands);
+    const operands = generateOperands(randomOperands);
 
-    return generateProblems(operator, randomOperands, number);
+    return generateProblems(operator, operands, number);
   }
 }

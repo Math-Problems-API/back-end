@@ -22,7 +22,7 @@ export type Property = {
 export type RandomOperand = {
   name?: string,
   generator: (properties: Property[]) => Operand,
-  properties: Property[]
+  properties?: Property[]
 }
 
 // Generic Operator shape
