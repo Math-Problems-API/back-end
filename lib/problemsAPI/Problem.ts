@@ -31,7 +31,7 @@ export const generateProblems = (operator: Operator, ops: Operand[], number: num
 // If no RandomOperand by that name is found, throw error
 // Do this so it makes it back to the user ¯\_(ツ)_/¯
 export const findOperands = (operands: UnParsedRandomOperand[], available: RandomOperand[]): RandomOperand[] => operands.map(o => {
-  const { name, properties, constraints: rawConstraints } = o;
+  const { name, properties, constraints: rawConstraints = []} = o;
   const op = available.find(o => o.name === name);
 
   if(!op) throw new Error(`Couldn't find operand with name ${name}`);
