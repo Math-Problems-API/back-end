@@ -8,7 +8,7 @@ export default buildSchema(`
   input RandomOperandInput {
     name: String!
     properties: [PropertyInput!]
-    constraints: [String!]!
+    constraints: [String!]
   }
 
   input LinkInput {
