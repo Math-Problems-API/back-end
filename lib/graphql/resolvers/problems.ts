@@ -1,5 +1,4 @@
 import { 
-  RandomOperand,
   Problem,
   UnParsedRandomOperand
 } from "../../problemsAPI/types";
@@ -34,9 +33,7 @@ export default {
     } = problemInput;
 
     const operator = generateOperator(rawOperator);
-    const randomOperands = findOperands(rawOperands, availableOperands);
-
-    const operands = generateOperands(randomOperands, makeGeneratorWithConstraints(10000));
+    const operands = findOperands(rawOperands, availableOperands);
 
     return generateProblems(operator, operands, number);
   }
