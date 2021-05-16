@@ -40,3 +40,5 @@ export type UnParsedRandomOperand = {
 // Generic Operator shape
 // e.g. addition is ([left, right]) => `${left} + ${right}`
 export type Operator = (props: Operand[]) => Problem;
+
+export type Generator = (ops: RandomOperand) => Operand;

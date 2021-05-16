@@ -5,7 +5,8 @@ import {
   RandomOperand,
   Operator,
   Constraint,
-  UnParsedRandomOperand
+  UnParsedRandomOperand,
+  Generator
 } from "./types";
 
 // Use a RandomOperand's generator and properties to
@@ -14,9 +15,35 @@ const generateOperand = (operand: RandomOperand): Operand => {
   return operand.generator(operand.properties);
 };
 
+export const constrainer = (constraints: Constraint[], operand: Operand): boolean => {
+  return constraints.reduce((pass, constraint) => {
+    if(!constraint(operand)) return false;
+    return pass;
+  }, true);
+}
+
+// I'd really like to have partial application here
+export const makeGeneratorWithConstraints = (maxIterations = 10000): Generator => {
+  return (operand: RandomOperand): Operand => {
+    let passes = false, iterations = 0, value;
+
+    while(!passes) {
+      if(iterations > maxIterations) throw new Error("Couldn't generate operand")
+
+      value = generateOperand(operand);
+      const passesThisIteration = constrainer(operand.constraints, value);
+
+      iterations += 1;
+
+      if(passesThisIteration) passes = true;
+    }
+
+    return value;
+  }
+}
 
 // Generate a list of Operands from a list of RandomOperands
-export const generateOperands = (ops: RandomOperand[]): Operand[] => ops.map(generateOperand);
+export const generateOperands = (ops: RandomOperand[], generator: Generator): Operand[] => ops.map(generator);
 
 export const generateProblems = (operator: Operator, ops: Operand[], number: number): Problem[] => {
   return [...Array(number)].map(() => operator(ops));
@@ -44,10 +71,3 @@ export const findOperands = (operands: UnParsedRandomOperand[], available: Rando
 
   return copy;
 });
-
-export const constrainer = (constraints: Constraint[], operand: Operand): boolean => {
-  return constraints.reduce((pass, constraint) => {
-    if(constraint(operand)) return false;
-    return pass;
-  }, true);
-}

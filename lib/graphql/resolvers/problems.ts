@@ -7,7 +7,8 @@ import {
 import { 
   findOperands,
   generateOperands,
-  generateProblems
+  generateProblems,
+  makeGeneratorWithConstraints
 } from "../../problemsAPI/Problem";
 
 import availableOperands from "../../problemsAPI/operands/index";
@@ -34,7 +35,8 @@ export default {
 
     const operator = generateOperator(rawOperator);
     const randomOperands = findOperands(rawOperands, availableOperands);
-    const operands = generateOperands(randomOperands);
+
+    const operands = generateOperands(randomOperands, makeGeneratorWithConstraints(10000));
 
     return generateProblems(operator, operands, number);
   }
