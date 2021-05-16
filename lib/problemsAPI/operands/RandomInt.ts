@@ -4,9 +4,7 @@ type myRange = {
   value: [number, number]
 }
 
-const range: myRange = { value: [0, 1000] };
-
-const intWithRange = (props: [myRange]): Operand => {
+const intWithRange = (props: myRange[]): Operand => {
   const range = props[0];
 
   const lowerBound = range.value[0];
@@ -21,8 +19,7 @@ const intWithRange = (props: [myRange]): Operand => {
 
 const RandomInt: RandomOperand = {
   name: "Random Int with Range",
-  generator: intWithRange,
-  properties: [range]
+  generator: intWithRange
 }
 
 export default RandomInt;
