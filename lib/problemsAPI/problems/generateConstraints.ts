@@ -1,5 +1,5 @@
 import { VM } from "vm2";
-import { Constraint, Operand, FirstOrderConstraint } from "../types";
+import { Constraint, Operand, FirstOrderConstraint, UnParsedLink, Link } from "../types";
 
 // These functions take data from GraphQL related to constraints
 // and turn them into functions that the problem-generation
@@ -43,12 +43,13 @@ const firstOrderConstraintFromString  = (constraint: string): FirstOrderConstrai
   }
 };
 
-type Generator = (cons: string) => Constraint | FirstOrderConstraint;
+export const generateConstraints = (constraints: string[]): Constraint[] => constraints.map(c => constraintFromString(c));
 
-const makeConstraintsGenerator = (generator: Generator) => {
-  return (constraints: string[]) => constraints.map(c => generator(c));
-};
+export const firstOrderConstraints = (constraints: string[]): FirstOrderConstraint[] => constraints.map(c => firstOrderConstraintFromString(c));
 
-export const generateConstraints = makeConstraintsGenerator(constraintFromString);
-
-export const firstOrderConstraints = makeConstraintsGenerator(firstOrderConstraintFromString);
+export const parseLinks = (links: UnParsedLink[]): Link[] => {
+  return links.map(l => {
+    const constraints = firstOrderConstraints(l.constraints);
+    return { ...l, constraints };
+  });
+}
