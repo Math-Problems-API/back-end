@@ -36,6 +36,12 @@ export type UnParsedRandomOperand = {
   properties?: Property[]
 }
 
+export type UnParsedLink = {
+  target: number,
+  modifier: number,
+  constraints: string[]
+}
+
 
 // Generic Operator shape
 // e.g. addition is ([left, right]) => `${left} + ${right}`

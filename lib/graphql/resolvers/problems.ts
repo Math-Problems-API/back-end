@@ -1,5 +1,6 @@
 import { 
   Problem,
+  UnParsedLink,
   UnParsedRandomOperand
 } from "../../problemsAPI/types";
 
@@ -15,6 +16,7 @@ import generateOperator from "../../utils/generateOperator";
 type ProblemQuery = {
   operands: UnParsedRandomOperand[],
   operator: string,
+  links: UnParsedLink[],
   number: number
 }
 
@@ -27,6 +29,7 @@ export default {
     const { 
       operands: rawOperands, 
       operator: rawOperator,
+      links: rawLinks,
       number
     } = problemInput;
 
