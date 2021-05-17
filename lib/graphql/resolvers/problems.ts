@@ -13,6 +13,7 @@ import availableOperands from "../../problemsAPI/operands/index";
 import generateOperator from "../../problemsAPI/problems/generateOperator";
 
 import {
+  generateModifiers,
   generateOperandGroups, 
   generateOperandWithConstraints 
 } from "../../problemsAPI/problems/operands";
@@ -47,6 +48,10 @@ export default {
     const links = generateLinks(rawLinks);
 
     // Generate Modifiers
+    console.log(
+      generateModifiers(operands, links)
+    );
+    
     // Add link constraints
     // Generate the rest
 

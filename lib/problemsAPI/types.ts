@@ -27,7 +27,8 @@ export type RandomOperand = {
   name?: string,
   generator: (properties: Property[]) => Operand,
   constraints?: Constraint[],
-  properties?: Property[]
+  properties?: Property[],
+  value?: string | number
 }
 
 export type UnParsedRandomOperand = {

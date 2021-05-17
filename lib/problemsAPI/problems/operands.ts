@@ -1,8 +1,10 @@
-import { Constraint, Operand, RandomOperand, Generator } from "../types";
+import { Constraint, Operand, RandomOperand, Generator, Link } from "../types";
 
 // Use a RandomOperand's generator and properties to
 // generate an Operand
 const generateOperand = (operand: RandomOperand): Operand => {
+  const { value } = operand;
+  if(value !== undefined) return { value };
   return operand.generator(operand.properties);
 };
 
@@ -56,5 +58,28 @@ const addConstraints = (operand: RandomOperand, newConstraints: Constraint[]): R
     ...operand, 
     constraints
   }
+};
+
+const addValue = (random: RandomOperand, operand: Operand): RandomOperand => {
+  const { value } = operand;
+  return { ...random, value };
 }
+
+export const generateModifiers = (operands: RandomOperand[], links: Link[]): RandomOperand[] => {
+  const modifiers = links.reduce((modifiers, link) => {
+    const { modifier } = link;
+    if(typeof modifier === "number" && !modifiers.includes(modifier)) {
+      return [...modifiers, modifier];
+    }
+    return modifiers;
+  }, []);
+
+  return operands.map((op, index) => {
+    if(modifiers.includes(index)) {
+      const computed = generateOperandWithConstraints(op);
+      return addValue(op, computed);
+    }
+    return op;
+  })
+};
 
