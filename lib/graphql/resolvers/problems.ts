@@ -6,7 +6,7 @@ import {
 
 import { 
   generateProblems
-} from "../../problemsAPI/problems";
+} from "../../problemsAPI/problems/generatorProblems";
 
 import availableOperands from "../../problemsAPI/operands/index";
 
@@ -15,7 +15,9 @@ import generateOperator from "../../problemsAPI/problems/generateOperator";
 import {
   generateOperandGroups, 
   generateOperandWithConstraints 
-} from "../../problemsAPI/problems/operandGeneration";
+} from "../../problemsAPI/problems/operands";
+
+import { findOperands } from "../../problemsAPI/problems/findOperands";
 
 
 
