@@ -18,6 +18,7 @@ import {
 } from "../../problemsAPI/problems/operands";
 
 import { findOperands } from "../../problemsAPI/problems/findOperands";
+import { generateLinks } from "../../problemsAPI/problems/generateConstraints";
 
 
 
@@ -40,9 +41,10 @@ export default {
       links: rawLinks,
       number
     } = problemInput;
-    
+
     const operator = generateOperator(rawOperator);
     const operands = findOperands(rawOperands, availableOperands);
+    const links = generateLinks(rawLinks);
 
     const operandGroups = generateOperandGroups(operands, number, generateOperandWithConstraints);
 
