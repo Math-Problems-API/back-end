@@ -1,4 +1,4 @@
-import { Operator, Operand, Problem } from "../problemsAPI/types";
+import { Operator, Operand, Problem } from "../types";
 
 // Munge the operator field from a problems query into an
 // Operator type function

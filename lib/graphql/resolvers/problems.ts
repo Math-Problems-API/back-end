@@ -11,7 +11,7 @@ import {
 
 import availableOperands from "../../problemsAPI/operands/index";
 
-import generateOperator from "../../utils/generateOperator";
+import generateOperator from "../../problemsAPI/problems/generateOperator";
 
 type ProblemQuery = {
   operands: UnParsedRandomOperand[],

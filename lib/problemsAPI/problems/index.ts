@@ -1,18 +1,16 @@
 
 
+import generateConstraints from "./generateConstraints";
 import {
   Problem,
   RandomOperand,
   Operator,
   UnParsedRandomOperand,
+  Operand,
 } from "../types";
 
-export const generateProblems = (operator: Operator, ops: RandomOperand[], number: number): Problem[] => {
-  return [...Array(number)].map(() => {
-    const generateOpsWithConstraints = generatorWithConstraints(10000);
-    const operands = generateOperands(ops, generateOpsWithConstraints);
-    return operator(operands);
-  });
+export const generateProblems = (operator: Operator, operandGroups: Operand[][]): Problem[] => {
+  return operandGroups.map(opGroup => operator(opGroup));
 };
 
 
