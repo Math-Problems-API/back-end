@@ -13,6 +13,13 @@ import availableOperands from "../../problemsAPI/operands/index";
 
 import generateOperator from "../../problemsAPI/problems/generateOperator";
 
+import {
+  generateOperandGroups, 
+  generateOperandWithConstraints 
+} from "../../problemsAPI/problems/operandGeneration";
+
+
+
 type ProblemQuery = {
   operands: UnParsedRandomOperand[],
   operator: string,
@@ -36,6 +43,8 @@ export default {
     const operator = generateOperator(rawOperator);
     const operands = findOperands(rawOperands, availableOperands);
 
-    return generateProblems(operator, operands, number);
+    const operandGroups = generateOperandGroups(operands, number, generateOperandWithConstraints);
+
+    return generateProblems(operator, operandGroups);
   }
 }

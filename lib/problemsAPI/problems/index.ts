@@ -1,5 +1,3 @@
-
-
 import generateConstraints from "./generateConstraints";
 import {
   Problem,
@@ -10,9 +8,8 @@ import {
 } from "../types";
 
 export const generateProblems = (operator: Operator, operandGroups: Operand[][]): Problem[] => {
-  return operandGroups.map(opGroup => operator(opGroup));
+  return operandGroups.map(operands => operator(operands));
 };
-
 
 // Given some data matching the shape of RandomOperand[]
 // and a list of available RandomOperands, find the RandomOperands
