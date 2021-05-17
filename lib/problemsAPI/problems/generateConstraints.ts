@@ -1,5 +1,5 @@
 import { VM } from "vm2";
-import { Constraint, Operand } from "../problemsAPI/types";
+import { Constraint, Operand } from "../types";
 
 const generateConstraint = (constraint: string): Constraint => {
   const [rawArg, rawResult] = constraint.split("=>");

@@ -5,13 +5,21 @@ import {
 } from "../../problemsAPI/types";
 
 import { 
-  findOperands,
   generateProblems
-} from "../../problemsAPI/Problem";
+} from "../../problemsAPI/problems/generateProblems";
 
 import availableOperands from "../../problemsAPI/operands/index";
 
-import generateOperator from "../../utils/generateOperator";
+import generateOperator from "../../problemsAPI/problems/generateOperator";
+
+import {
+  generateOperandGroups, 
+  generateOperandWithConstraints 
+} from "../../problemsAPI/problems/operands";
+
+import { findOperands } from "../../problemsAPI/problems/findOperands";
+
+
 
 type ProblemQuery = {
   operands: UnParsedRandomOperand[],
@@ -36,6 +44,8 @@ export default {
     const operator = generateOperator(rawOperator);
     const operands = findOperands(rawOperands, availableOperands);
 
-    return generateProblems(operator, operands, number);
+    const operandGroups = generateOperandGroups(operands, number, generateOperandWithConstraints);
+
+    return generateProblems(operator, operandGroups);
   }
 }
