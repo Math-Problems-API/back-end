@@ -10,6 +10,7 @@
     "mathjs": "^9.3.2",
     "nodemon": "^2.0.7",
     "pg": "^8.6.0",
+    "tsc-watch": "^4.2.9",
     "vm2": "^3.9.3"
   },
   "devDependencies": {
@@ -26,8 +27,7 @@
     "test:watch": "yarn test --watch",
     "build": "yarn tsc -p ./",
     "build:watch": "yarn run build -w",
-    "start:dev": "yarn build && node dist/server.js",
-    "start:watch": "yarn start:dev --watch",
-    "start": "node dist/server.js"
+    "start:dev": "yarn tsc-watch --onSuccess \"yarn start\"",
+    "start": "node ./dist/server.js"
   }
 }

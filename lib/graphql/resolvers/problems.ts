@@ -44,9 +44,6 @@ export default {
       number
     } = problemInput;
 
-    console.log("HI")
-    
-
     const operator = generateOperator(rawOperator);
     const operands = findOperands(rawOperands, availableOperands);
     const links = generateLinks(rawLinks);
