@@ -2,11 +2,11 @@ import { Constraint, Operand, RandomOperand, Generator } from "../types";
 
 // Use a RandomOperand's generator and properties to
 // generate an Operand
-
 const generateOperand = (operand: RandomOperand): Operand => {
   return operand.generator(operand.properties);
 };
 
+// Checks constraints by giving each a particular value
 export const constrainer = (constraints: Constraint[], operand: Operand): boolean => {
   return constraints.reduce((pass, constraint) => {
     if(!constraint(operand)) return false;
@@ -14,7 +14,9 @@ export const constrainer = (constraints: Constraint[], operand: Operand): boolea
   }, true);
 }
 
-// I'd really like to have partial application here
+// Takes a generator function. Wraps it in a constraint checker
+// maxIterations is the number at which an error will be thrown.
+// Maybe make this case up to the user. 
 const makeGeneratorWithConstraints = (generator: Generator, maxIterations = 10000): Generator => {
   return (operand: RandomOperand): Operand => {
     let passes = false, iterations = 0, value;

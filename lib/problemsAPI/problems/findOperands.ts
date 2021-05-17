@@ -1,15 +1,5 @@
-import generateConstraints from "./generateConstraints";
-import {
-  Problem,
-  RandomOperand,
-  Operator,
-  UnParsedRandomOperand,
-  Operand,
-} from "../types";
-
-export const generateProblems = (operator: Operator, operandGroups: Operand[][]): Problem[] => {
-  return operandGroups.map(operands => operator(operands));
-};
+import { RandomOperand, UnParsedRandomOperand } from "../types";
+import generateConstraints from "./constraints";
 
 // Given some data matching the shape of RandomOperand[]
 // and a list of available RandomOperands, find the RandomOperands

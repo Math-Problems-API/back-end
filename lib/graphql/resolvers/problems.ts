@@ -5,7 +5,6 @@ import {
 } from "../../problemsAPI/types";
 
 import { 
-  findOperands,
   generateProblems
 } from "../../problemsAPI/problems";
 
