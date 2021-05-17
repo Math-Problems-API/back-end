@@ -48,3 +48,11 @@ export type UnParsedLink = {
 export type Operator = (props: Operand[]) => Problem;
 
 export type Generator = (ops: RandomOperand) => Operand;
+
+export type Link = {
+  modifier: number,
+  target: number,
+  constraints: FirstOrderConstraint[]
+}
+
+export type FirstOrderConstraint = (modifier: Operand) => Constraint;

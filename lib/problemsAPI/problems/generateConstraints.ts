@@ -1,5 +1,5 @@
 import { VM } from "vm2";
-import { Constraint, Operand } from "../types";
+import { Constraint, Operand, FirstOrderConstraint } from "../types";
 
 const generateConstraint = (constraint: string): Constraint => {
   const [rawArg, rawResult] = constraint.split("=>");
@@ -25,8 +25,20 @@ const generateConstraint = (constraint: string): Constraint => {
   }
 };
 
-const generateConstraints = (constraints: string[]): Constraint[] => {
+export const generateConstraints = (constraints: string[]): Constraint[] => {
   return constraints.map(c => generateConstraint(c));
 }
 
-export default generateConstraints;
+export const generateFirstOrderConstraint = (constraint: string): FirstOrderConstraint => {
+  const [target, result] = constraint.split("=>").map(s => s.trim());
+
+  return (modifier: Operand) => {
+    const modifierRegExp = new RegExp("modifier", "g");
+
+    const resultWithModifier = result.replace(modifierRegExp, `${modifier.value}`);
+
+    const constraintString = [target, resultWithModifier].join(" => ");
+
+    return generateConstraint(constraintString)
+  }
+} 
