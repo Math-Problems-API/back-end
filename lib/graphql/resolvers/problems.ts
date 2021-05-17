@@ -13,9 +13,10 @@ import availableOperands from "../../problemsAPI/operands/index";
 import generateOperator from "../../problemsAPI/problems/generateOperator";
 
 import {
-  generateModifiers,
-  generateOperandGroups, 
-  generateOperandWithConstraints 
+  addLinksToGroupGenerator,
+  generateOperandsWithConstraints, 
+  makeGroupsGenerator, 
+  makeOperandGroups
 } from "../../problemsAPI/problems/operands";
 
 import { findOperands } from "../../problemsAPI/problems/findOperands";
@@ -43,19 +44,18 @@ export default {
       number
     } = problemInput;
 
+    console.log("HI")
+    
+
     const operator = generateOperator(rawOperator);
     const operands = findOperands(rawOperands, availableOperands);
     const links = generateLinks(rawLinks);
 
-    // Generate Modifiers
-    console.log(
-      generateModifiers(operands, links)
-    );
-    
-    // Add link constraints
-    // Generate the rest
+    const generateGroupWithLinks = addLinksToGroupGenerator(generateOperandsWithConstraints, links);
+    const generateGroups = makeGroupsGenerator(generateGroupWithLinks);
 
-    const operandGroups = generateOperandGroups(operands, number, generateOperandWithConstraints);
+    const randomOperandGroups = makeOperandGroups(operands, number);
+    const operandGroups = generateGroups(randomOperandGroups);
 
     return generateProblems(operator, operandGroups);
   }

@@ -49,6 +49,8 @@ export type UnParsedLink = {
 export type Operator = (props: Operand[]) => Problem;
 
 export type Generator = (ops: RandomOperand) => Operand;
+export type GroupGenerator = (ops: RandomOperand[]) => Operand[];
+export type GroupsGenerator = (ops: RandomOperand[][]) => Operand[][];
 
 export type Link = {
   modifier: number,
