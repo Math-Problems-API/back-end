@@ -46,6 +46,10 @@ export default {
     const operands = findOperands(rawOperands, availableOperands);
     const links = generateLinks(rawLinks);
 
+    // Generate Modifiers
+    // Add link constraints
+    // Generate the rest
+
     const operandGroups = generateOperandGroups(operands, number, generateOperandWithConstraints);
 
     return generateProblems(operator, operandGroups);

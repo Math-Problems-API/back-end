@@ -47,5 +47,14 @@ export const generateOperandGroups = (ops: RandomOperand[], number: number, gene
 
 
 // Make a new RandomOperand with extra constraints
+const addConstraints = (operand: RandomOperand, newConstraints: Constraint[]): RandomOperand => {
+  const { constraints: oldConstraints } = operand;
 
+  const constraints = [...oldConstraints, ...newConstraints];
+
+  return { 
+    ...operand, 
+    constraints
+  }
+}
 
