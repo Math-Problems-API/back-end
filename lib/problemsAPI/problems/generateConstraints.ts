@@ -1,6 +1,10 @@
 import { VM } from "vm2";
 import { Constraint, Operand, FirstOrderConstraint } from "../types";
 
+// These functions take data from GraphQL related to constraints
+// and turn them into functions that the problem-generation
+// functions can understand
+
 const generateConstraint = (constraint: string): Constraint => {
   const [rawArg, rawResult] = constraint.split("=>");
 
