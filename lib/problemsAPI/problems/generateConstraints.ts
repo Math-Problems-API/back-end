@@ -5,7 +5,7 @@ import { Constraint, Operand, FirstOrderConstraint } from "../types";
 // and turn them into functions that the problem-generation
 // functions can understand
 
-const generateConstraint = (constraint: string): Constraint => {
+const constraintFromString = (constraint: string): Constraint => {
   const [rawArg, rawResult] = constraint.split("=>");
 
   const trimmedArg = rawArg.trim();
@@ -29,11 +29,7 @@ const generateConstraint = (constraint: string): Constraint => {
   }
 };
 
-export const generateConstraints = (constraints: string[]): Constraint[] => {
-  return constraints.map(c => generateConstraint(c));
-}
-
-export const generateFirstOrderConstraint = (constraint: string): FirstOrderConstraint => {
+const firstOrderConstraintFromString  = (constraint: string): FirstOrderConstraint => {
   const [target, result] = constraint.split("=>").map(s => s.trim());
 
   return (modifier: Operand) => {
@@ -43,6 +39,16 @@ export const generateFirstOrderConstraint = (constraint: string): FirstOrderCons
 
     const constraintString = [target, resultWithModifier].join(" => ");
 
-    return generateConstraint(constraintString)
+    return constraintFromString(constraintString)
   }
-} 
+};
+
+type Generator = (cons: string) => Constraint | FirstOrderConstraint;
+
+const makeConstraintsGenerator = (generator: Generator) => {
+  return (constraints: string[]) => constraints.map(c => generator(c));
+};
+
+export const generateConstraints = makeConstraintsGenerator(constraintFromString);
+
+export const firstOrderConstraints = makeConstraintsGenerator(firstOrderConstraintFromString);

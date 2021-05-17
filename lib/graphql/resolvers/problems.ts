@@ -18,7 +18,6 @@ import {
 } from "../../problemsAPI/problems/operands";
 
 import { findOperands } from "../../problemsAPI/problems/findOperands";
-import { generateFirstOrderConstraint } from "../../problemsAPI/problems/generateConstraints";
 
 
 
