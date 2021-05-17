@@ -7,7 +7,7 @@ import {
 import { 
   findOperands,
   generateProblems
-} from "../../problemsAPI/Problem";
+} from "../../problemsAPI/problems";
 
 import availableOperands from "../../problemsAPI/operands/index";
 
