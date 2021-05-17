@@ -47,7 +47,7 @@ export const generateConstraints = (constraints: string[]): Constraint[] => cons
 
 export const firstOrderConstraints = (constraints: string[]): FirstOrderConstraint[] => constraints.map(c => firstOrderConstraintFromString(c));
 
-export const generateLinks = (links: UnParsedLink[]): Link[] => {
+export const generateLinks = (links: UnParsedLink[] = []): Link[] => {
   return links.map(l => {
     const constraints = firstOrderConstraints(l.constraints);
     return { ...l, constraints };
