@@ -45,3 +45,6 @@ export const generateOperandGroups = (ops: RandomOperand[], number: number, gene
   return [...Array(number)].map(() => generateOperands(ops, generator));
 }
 
+export const generateOperandsWithLinks = (ops: RandomOperand[], links: Link[]): Operand[] => {
+  
+}
