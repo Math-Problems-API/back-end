@@ -1,5 +1,5 @@
 import { RandomOperand, UnParsedRandomOperand } from "../types";
-import generateConstraints from "./generateConstraints";
+import { generateConstraints } from "./generateConstraints";
 
 // Given some data matching the shape of RandomOperand[]
 // and a list of available RandomOperands, find the RandomOperands

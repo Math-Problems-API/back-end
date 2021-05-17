@@ -27,7 +27,8 @@ export type RandomOperand = {
   name?: string,
   generator: (properties: Property[]) => Operand,
   constraints?: Constraint[],
-  properties?: Property[]
+  properties?: Property[],
+  value?: string | number
 }
 
 export type UnParsedRandomOperand = {
@@ -48,3 +49,13 @@ export type UnParsedLink = {
 export type Operator = (props: Operand[]) => Problem;
 
 export type Generator = (ops: RandomOperand) => Operand;
+export type GroupGenerator = (ops: RandomOperand[]) => Operand[];
+export type GroupsGenerator = (ops: RandomOperand[][]) => Operand[][];
+
+export type Link = {
+  modifier: number,
+  target: number,
+  constraints: FirstOrderConstraint[]
+}
+
+export type FirstOrderConstraint = (modifier: Operand) => Constraint;
