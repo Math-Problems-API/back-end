@@ -49,6 +49,7 @@ export default {
     const links = generateLinks(rawLinks);
 
     const generateGroupWithLinks = addLinksToGroupGenerator(generateOperandsWithConstraints, links);
+
     const generateGroups = makeGroupsGenerator(generateGroupWithLinks);
 
     const randomOperandGroups = makeOperandGroups(operands, number);

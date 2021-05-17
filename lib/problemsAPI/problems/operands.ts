@@ -95,11 +95,12 @@ const addLinkConstraints = (operands: RandomOperand[], links: Link[]): RandomOpe
 
   links.forEach(link => {
     const { modifier, target, constraints } = link;
+    
     const { value } = operands[modifier];
     const computedConstraints = constraints.map(c => c({ value }));
     const newOperand = addConstraints(operands[target], computedConstraints);
 
-    ops = [...ops.slice(target), newOperand, ...ops.slice(target + 1)]
+    ops = [...ops.slice(0, target), newOperand, ...ops.slice(target + 1)]
   });
 
   return ops;
