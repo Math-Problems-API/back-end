@@ -52,9 +52,9 @@ export const generateOperator = (operator: string): Operator => {
   };
 }
 
-// Similar to generateOperator, but this returns code that is
-// actually run, e.g. 17 % 3 === 0. 
-export const constraintFromString = (constraint: string): Constraint => {
+// Make a constraint function from a string
+// Look for 'for' and 'while' keywords
+const constraintFromString = (constraint: string): Constraint => {
   const [rawArg, rawResult] = constraint.split("=>");
 
   const trimmedArg = rawArg.trim();
