@@ -2,11 +2,6 @@ import { GroupGenerator, Link, Operand, RandomOperand } from "../types";
 import { generateOperandWithConstraints } from "./operands";
 import { addConstraints } from "./constraints";
 
-// Generate modifiers and add constraints to targets
-export const addLinks = (operands: RandomOperand[], links: Link[]): RandomOperand[] => {
-  const operandsWithModifiers = generateModifiers(operands, links);
-  return addLinkConstraints(operandsWithModifiers, links);
-};
 
 // apply addLinks functionality to a GroupGenerator
 export const addLinksToGroupGenerator = (generator: GroupGenerator, links: Link[]): GroupGenerator => {
@@ -35,7 +30,7 @@ const giveRandomOperandValue = (random: RandomOperand, operand: Operand): Random
 
 // For each modifier value on a link, generate the
 // RandomOperand with that index
-export const generateModifiers = (operands: RandomOperand[], links: Link[]): RandomOperand[] => {
+const generateModifiers = (operands: RandomOperand[], links: Link[]): RandomOperand[] => {
   const modifiers = links.reduce((modifiers, link) => {
     const { modifier } = link;
     if(typeof modifier === "number" && !modifiers.includes(modifier)) {
