@@ -1,15 +1,23 @@
-import { Constraint, Operand, RandomOperand, Generator, GroupGenerator, Link, GroupsGenerator } from "../types";
+import { 
+  Constraint, 
+  Operand, 
+  RandomOperand, 
+  Generator, 
+  GroupGenerator, 
+  Link, 
+  GroupsGenerator 
+} from "../types";
 
 // Use a RandomOperand's generator and properties to
 // generate an Operand
-const generateOperand = (operand: RandomOperand): Operand => {
+const generateOperand: Generator = operand => {
   const { value } = operand;
   if(value !== undefined) return { value };
   return operand.generator(operand.properties);
 };
 
 // Checks constraints by giving each a particular value
-export const constrainer = (constraints: Constraint[], operand: Operand): boolean => {
+export const cosntraintsCheck = (constraints: Constraint[], operand: Operand): boolean => {
   return constraints.reduce((pass, constraint) => {
     if(!constraint(operand)) return false;
     return pass;
@@ -27,7 +35,7 @@ const makeGeneratorWithConstraints = (generator: Generator, maxIterations = 1000
       if(iterations > maxIterations) throw new Error("Couldn't generate operand")
 
       value = generator(operand);
-      const passesThisIteration = constrainer(operand.constraints, value);
+      const passesThisIteration = cosntraintsCheck(operand.constraints, value);
 
       iterations += 1;
 
