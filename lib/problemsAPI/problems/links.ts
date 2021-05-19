@@ -1,5 +1,6 @@
-import { Constraint, GroupGenerator, Link, Operand, RandomOperand } from "../types";
+import { GroupGenerator, Link, Operand, RandomOperand } from "../types";
 import { generateOperandWithConstraints } from "./operands";
+import { addConstraints } from "./constraints";
 
 // Generate modifiers and add constraints to targets
 export const addLinks = (operands: RandomOperand[], links: Link[]): RandomOperand[] => {
@@ -50,16 +51,6 @@ export const generateModifiers = (operands: RandomOperand[], links: Link[]): Ran
     }
     return op;
   })
-};
-
-// Make a new RandomOperand with some extra constraints
-const addConstraints = (operand: RandomOperand, newConstraints: Constraint[]): RandomOperand => {
-  const { constraints: oldConstraints } = operand;
-  const constraints = [...oldConstraints, ...newConstraints];
-  return { 
-    ...operand, 
-    constraints
-  }
 };
 
 // Compute the constraints on each link using the values

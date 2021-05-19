@@ -1,10 +1,8 @@
 import { 
-  Constraint, 
   Operand, 
   RandomOperand, 
   Generator, 
   GroupGenerator, 
-  Link, 
   GroupsGenerator 
 } from "../types";
 
@@ -26,7 +24,7 @@ export const makeOperandGroups = (ops: RandomOperand[], number: number): RandomO
   return [...Array(number)].map(() => ops);
 };
 
-// Given a generator, make a GroupGenerator that generates
+// Make a GroupGenerator from a generator that generates
 // an array of RandomOperands. 
 export const makeGroupGenerator = (generator: Generator): GroupGenerator => (ops: RandomOperand[]): Operand[] => ops.map(generator);
 

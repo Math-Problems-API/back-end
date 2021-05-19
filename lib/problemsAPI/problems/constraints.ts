@@ -1,4 +1,9 @@
-import { Constraint, Generator, Operand, RandomOperand } from "../types";
+import { 
+  Constraint, 
+  Generator, 
+  Operand, 
+  RandomOperand 
+} from "../types";
 
 // Checks constraints by giving each a particular value
 export const constraintsCheck = (constraints: Constraint[], operand: Operand): boolean => {
@@ -12,7 +17,7 @@ export const constraintsCheck = (constraints: Constraint[], operand: Operand): b
 // after it iterates maxIterations times, throw error 
 export const makeGeneratorWithConstraints = (generator: Generator, maxIterations = 10000): Generator => {
   return (operand: RandomOperand): Operand => {
-    let passes = false, iterations = 0, value;
+    let passes = false, iterations = 0, value: Operand;
 
     while(!passes) {
       if(iterations > maxIterations) throw new Error("Couldn't generate operand")
@@ -26,5 +31,15 @@ export const makeGeneratorWithConstraints = (generator: Generator, maxIterations
     }
 
     return value;
+  }
+}
+
+// Make a new RandomOperand with some extra constraints
+export const addConstraints = (operand: RandomOperand, newConstraints: Constraint[]): RandomOperand => {
+  const { constraints: oldConstraints } = operand;
+  const constraints = [...oldConstraints, ...newConstraints];
+  return { 
+    ...operand, 
+    constraints
   }
 }
