@@ -32,7 +32,7 @@ export const findOperands = (operands: UnParsedRandomOperand[], available: Rando
   copy.constraints = constraints;
 
   return copy;
-});
+})
 
 // Munge the operator field from a problems query into an
 // Operator function
@@ -50,7 +50,7 @@ export const generateOperator = (operator: string): Operator => {
 
     return { problem };
   };
-};
+}
 
 // Similar to generateOperator, but this returns code that is
 // actually run, e.g. 17 % 3 === 0. 
@@ -76,8 +76,9 @@ export const constraintFromString = (constraint: string): Constraint => {
 
     return computedResult;
   }
-};
+}
 
+// Same a constraintFromString for FirstOrderConstraint
 export const firstOrderConstraintFromString  = (constraint: string): FirstOrderConstraint => {
   const [target, result] = constraint.split("=>").map(s => s.trim());
 
@@ -90,12 +91,15 @@ export const firstOrderConstraintFromString  = (constraint: string): FirstOrderC
 
     return constraintFromString(constraintString)
   }
-};
+}
 
+// Array version of constraints from string
 const generateConstraints = (constraints: string[]): Constraint[] => constraints.map(c => constraintFromString(c));
 
+// Array version of first order constraints from string
 export const firstOrderConstraints = (constraints: string[]): FirstOrderConstraint[] => constraints.map(c => firstOrderConstraintFromString(c));
 
+// Make Links from UnParsedLinks. 
 export const generateLinks = (links: UnParsedLink[] = []): Link[] => {
   return links.map(l => {
     const constraints = firstOrderConstraints(l.constraints);
