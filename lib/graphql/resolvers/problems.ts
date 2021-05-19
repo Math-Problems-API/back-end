@@ -5,22 +5,22 @@ import {
 } from "../../problemsAPI/types";
 
 import { 
-  generateProblems
-} from "../../problemsAPI/problems/generateProblems";
+  findOperands, 
+  generateLinks, 
+  generateOperator 
+} from "../../problemsAPI/problems/dataAPI";
 
 import availableOperands from "../../problemsAPI/operands/index";
 
-import generateOperator from "../../problemsAPI/problems/generateOperator";
+import { generateProblems } from "../../problemsAPI/problems/problems";
 
 import {
-  addLinksToGroupGenerator,
   generateOperandsWithConstraints, 
   makeGroupsGenerator, 
   makeOperandGroups
 } from "../../problemsAPI/problems/operands";
 
-import { findOperands } from "../../problemsAPI/problems/findOperands";
-import { generateLinks } from "../../problemsAPI/problems/generateConstraints";
+import { addLinksToGroupGenerator } from "../../problemsAPI/problems/links";
 
 
 

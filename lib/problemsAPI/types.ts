@@ -30,6 +30,8 @@ export type Property = {
 
 export type Constraint = (value: Operand) => boolean;
 
+
+// Links
 export type Link = {
   modifier: number,
   target: number,
