@@ -45,14 +45,14 @@ export default {
     } = problemInput;
 
     const operator = generateOperator(rawOperator);
-    const operands = findOperands(rawOperands, availableOperands);
+    const randomOperands = findOperands(rawOperands, availableOperands);
     const links = generateLinks(rawLinks);
 
     const generateGroupWithLinks = addLinksToGroupGenerator(generateOperandsWithConstraints, links);
 
     const generateGroups = makeGroupsGenerator(generateGroupWithLinks);
 
-    const randomOperandGroups = makeOperandGroups(operands, number);
+    const randomOperandGroups = makeOperandGroups(randomOperands, number);
     const operandGroups = generateGroups(randomOperandGroups);
 
     return generateProblems(operator, operandGroups);
