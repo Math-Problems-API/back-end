@@ -38,9 +38,15 @@ export default buildSchema(`
     properties: [Property!]
   }
 
+  type Operator {
+    name: String!
+    value: String!
+  }
+
   type RootQuery {
     problems(problemInput: ProblemInput): [Problem!]!
     availableOperands: [RandomOperand!]!
+    availableOperators: [Operator!]
     availableOperatorViews: [String!]!
   }
 
