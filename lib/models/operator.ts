@@ -1,8 +1,5 @@
 import pool from "../utils/pool";
-
-const availableOperatorViews = [
-  "addition"
-]
+import fs from "fs"
 
 const getFromDatabase = (query: string, behavior) => {
   return async () => {
@@ -14,17 +11,15 @@ const getFromDatabase = (query: string, behavior) => {
 
 const getOperatorsQuery = "SELECT * FROM operators";
 
-const operatorHasView = (name: string): boolean => {
-  return !!availableOperatorViews.find(elem => elem === name)
-}
-
 const getOpsBehavior = rows => {
   return rows.map(({ name, value }) => {
-    const opHasView = operatorHasView(name);
-    const operator = { name, value, view: null };
+    const operator = { name, value, view: null }; 
+
+    const viewPath = `${__dirname}/../views/operators/${name}.html`;
+    const opHasView = fs.existsSync(viewPath);
 
     if(opHasView) {
-      operator.view = "<div>Test</div>"
+      operator.view = fs.readFileSync(viewPath, "utf8")
     }
     
     return operator;
