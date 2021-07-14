@@ -41,6 +41,7 @@ export default buildSchema(`
   type RootQuery {
     problems(problemInput: ProblemInput): [Problem!]!
     availableOperands: [RandomOperand!]!
+    availableOperatorViews: [String!]!
   }
 
   schema {
