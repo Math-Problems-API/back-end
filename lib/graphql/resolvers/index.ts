@@ -6,6 +6,6 @@ import availableOperators from "./availableOperators";
 export default {
   ...problems,
   ...availableOperands,
-  ...availableOperatorViews,
-  ...availableOperators
+  ...availableOperators,
+  ...availableOperatorViews
 }

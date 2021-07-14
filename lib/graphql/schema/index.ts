@@ -41,6 +41,7 @@ export default buildSchema(`
   type Operator {
     name: String!
     value: String!
+    view: String
   }
 
   type RootQuery {

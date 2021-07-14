@@ -11,14 +11,6 @@ const app = express();
 app.use(cors({ "Access-Control-Allow-Origin": "*" }));
 app.use(json());
 
-app.use("/operator-views/:operatorId", (req, res) => {
-  const { operatorId } = req.params;
-
-  const operatorPath = `${__dirname}/views/operators/${operatorId}.html`;
-
-  res.sendFile(operatorPath)
-});
-
 app.use("/", gql);
 
 app.use(notFound);
